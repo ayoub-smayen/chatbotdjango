@@ -1,0 +1,239 @@
+{% load static %}<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}Django School{% endblock %}</title>
+    <link rel="icon" href="{% static 'img/favicon.png' %}">
+    <link href="https://fonts.googleapis.com/css?family=Clicker+Script" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/fontello-2f186091/css/fontello.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/app.css' %}">
+    {% if user.is_authenticated and user.is_teacher %}
+      <link rel="stylesheet" type="text/css" href="{% static 'css/teachers.css' %}">
+    {% else %}
+      <link rel="stylesheet" type="text/css" href="{% static 'css/students.css' %}">
+
+    <style>
+      body {
+  background-color: #e1e2e3;
+}
+.s-psw {
+  text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 40px;
+  line-height: 40px;
+  color: rgb(0, 0, 0);
+  padding: 6px;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #007ff4;
+  margin-left: 355px;
+  margin-right: auto;
+  margin-top: 80px;
+}
+.s-btn {
+  font-size: 40px;
+  position: relative;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 18px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  color: #fff;
+  padding: 40px 40px;
+  background: #007ff4;
+  box-shadow: 0px 4px 12px rgba(70, 87, 90, 0.1);
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: 250ms ease;
+}
+.s-btn:hover {
+  background: #2694fa;
+  box-shadow: 0px 4px 12px rgb(43, 54, 56, 0.979);
+}
+.s-btn:active {
+  background: #0073de;
+  transform: scale(0.98);
+}
+
+    </style>
+    <script>
+      function sayItOutLoud(id) {
+  const message = document.getElementById(id).value;
+  var speech = new SpeechSynthesisUtterance();
+  speech.lang = "en-US";
+  speech.text = message;
+  speech.volume = 1;
+  speech.rate = 1;
+  speech.pitch = 1;
+
+  window.speechSynthesis.speak(speech);
+}
+
+    </script>
+    {% endif %}
+  </head>
+  <body>
+
+
+  <nav class="navbar navbar-icon-top navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">
+          <i class="fa fa-home"></i>
+          Home
+          <span class="sr-only">(current)</span>
+          </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <i class="fa fa-envelope-o">
+            <span class="badge badge-danger">11</span>
+          </i>
+          Link
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">
+          <i class="fa fa-envelope-o">
+            <span class="badge badge-warning">11</span>
+          </i>
+          Disabled
+        </a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fa fa-envelope-o">
+            <span class="badge badge-primary">11</span>
+          </i>
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+    </ul>
+    <ul class="navbar-nav ">
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <i class="fa fa-bell">
+            <span class="badge badge-info">11</span>
+          </i>
+          Test
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <i class="fa fa-globe">
+            <span class="badge badge-success">11</span>
+          </i>
+          Test
+        </a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+
+    <div class="container my-4">
+      <div class="row justify-content-center">
+        <div class="col-md-10 col-sm-12">
+          <div class="row">
+            <div class="col-6">
+              <h1 class="logo">
+                <a href="{% url 'home' %}">
+                  Django School
+                  {% if user.is_authenticated %}
+                    {% if user.is_teacher %}
+                      <span class="icon-feather" data-toggle="tooltip" data-placement="right" title="Teacher profile"></span>
+                    {% else %}
+                      <span class="icon-graduation-cap" data-toggle="tooltip" data-placement="right" title="Student profile"></span>
+                    {% endif %}
+                  {% endif %}
+                </a>
+              </h1>
+            </div>
+            <div class="col-6 text-right">
+              {% if user.is_authenticated %}
+
+                 <li><a href="{% url 'view_profile'%}">Profile
+                 Logged in as <strong>{{ user.username }}</strong>
+
+                   <p>
+                     first_name {{user.first_name}}  : <small> last_name : {{user.last_name}}</small>
+
+                   </p>
+                   <b>
+                    Age :  {{user.userprofile.age}} years old
+                   </b>
+              {%if user.userprofile.image.url  %}
+                    <li><img src="{{ user.userprofile.image.url}}" width="50" height="50"></li>
+              {% else %}
+              <li><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/1024px-User-avatar.svg.png" width="50" height="50"></li>
+              {% endif %}
+                 </a>
+
+
+              </li>
+                <p class="pt-3">Logged in as <strong>{{ user.username }}</strong>. <a href="{% url 'logout' %}">Log out</a>.</p>
+              {% else %}
+                <a href="{% url 'login' %}" class="btn btn-light" role="button">Log in</a>
+                <a href="{% url 'signup' %}" class="btn btn-primary" role="button">Sign up</a>
+              {% endif %}
+            </div>
+          </div>
+          <div class="card mb-3">
+            <div class="card-body">
+
+              {% for message in messages %}
+                <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert">
+                  {{ message }}
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              {% endfor %}
+              {% block content %}
+              {% endblock %}
+            </div>
+          </div>
+
+
+<!--            <input placeholder="Type Here" type="text" class="s-psw" name="" id="say-input">-->
+<!--  <button onclick="sayItOutLoud('say-input')" class="s-btn">Say it</button>-->
+          <footer>
+            <a href="https://simpleisbetterthancomplex.com">© SimpleIsBetterThanComplex.com</a>
+            /
+            <a href="https://simpleisbetterthancomplex.com/tutorial/2018/01/18/how-to-implement-multiple-user-types-with-django.html">Read more about this example</a>
+            /
+            <a href="https://github.com/sibtc/django-multiple-user-types-example">GitHub repository</a>
+          </footer>
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+      })
+    </script>
+  </body>
+</html>
